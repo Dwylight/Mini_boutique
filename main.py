@@ -30,22 +30,23 @@ def main():
         print("2. Retirer un article du panier")
         print("3. Voir le coût total du panier")
         print("4. Vérifier le stock d'un article")
-        print("5. Valider le panier")
-        print("6. Quitter")
+        print("5. Voir le panier")
+        print("6. Valider le panier")
+        print("7. Quitter")
         print()
 
-        choix = input("Quel est votre choix?")
+        choix = input("Quel est votre choix?: ")
         print()
 
         if choix == "1":
-            nom_produit = input("Entrez le nom exact de l'article")
+            nom_produit = input("Entrez le nom exact de l'article: ")
             if nom_produit in produits_disponibles:
                 produit = produits_disponibles[nom_produit]
                 panier.ajouter_produit(produit)
             else:
                 print("Cet article n'existe pas!")
         elif choix == "2":
-            nom_article = input("Entrez le nom exact de l'article à retirer")
+            nom_article = input("Entrez le nom exact de l'article à retirer: ")
             if nom_article in produits_disponibles:
                 article_a_retirer = produits_disponibles[nom_article]
                 panier.retirer_produit(article_a_retirer)
@@ -54,26 +55,31 @@ def main():
                 print("Vous n'avez aucun article dans votre panier")
             else:
                 prix = panier.calculer_total()
-                print(f"Le prx total du panier est {prix} FCFA")
+                print(f"Le prix total du panier est {prix} FCFA")
         elif choix == "4":
-            nom_produit = input("Entrez le nom exact de l'article")
+            nom_produit = input("Entrez le nom exact de l'article: ")
             if nom_produit in produits_disponibles:
                 produit = produits_disponibles[nom_produit]
                 if produit.verifier_stock():
                     print(f"il reste {produit.stock} articles {produit.nom} en stock")
                 else:
-                    prix(f"Le stock {produit.nom} est epuisé")
+                    print(f"Le stock {produit.nom} est epuisé")
+            else:
+                print("Cet artiche n'existe pas")
         elif choix == "5":
-            confirmation = input("Confirmer le paiement?(o/n)")
+            panier.voir_le_panier()
+        elif choix == "6":
+            confirmation = input("Confirmer le paiement?(o/n): ")
             if confirmation.lower() == "o":
-                print("DAMY SHOP vous remercie pour votre achat")
+                print("DAMY SHOP vous remercie pour votre achat! A bientôt")
                 break
             else:
                 print("Paiement non effectué")
-        elif choix == "6":
+        elif choix == "7":
             break
         else:
             print("Veuillez entrer un numéro valide!")
+        print()    
 
 if __name__ == "__main__":
     main()

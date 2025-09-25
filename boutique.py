@@ -18,6 +18,7 @@ class Cart:
         if produit.verifier_stock():
             self.produits.append(produit)
             produit.stock -= 1
+            print(f"{produit.nom} a été ajouté à votre panier")
         else:
             print(f"Le stock de {produit.nom} est épuisé!")
 
@@ -34,6 +35,14 @@ class Cart:
         for produit in self.produits:
             total += produit.prix
         return total
+    
+    def voir_le_panier(self):
+        if not self.produits:
+            print("Votre panier est vide.")
+        else:
+            print("Contenu de votre panier:")
+            for produit in self.produits:
+                print(f"- {produit.nom} : {produit.prix} FCFA")
     
 def afficher_tous_les_produits():
     for produit in Product.tous_les_produits:
